@@ -1,0 +1,10 @@
+services:
+  tts-openai-app:
+    image: tts-openai-app
+    container_name: tts-openai-app
+    restart: "unless-stopped"
+    ports:
+      - 8080:8501
+    environment:
+      - OPENAI_API_KEY="{api_key}"
+      - OPENAI_TTS_MODEL="tts-1"
