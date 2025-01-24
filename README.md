@@ -4,8 +4,6 @@
 Simple Python app to demonstrate use of OpenAI Text-to-Speech capabilities with Web UI using Streamlit
 
 
-
-
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file or pass it when running Docker container
@@ -22,29 +20,29 @@ Optionaly you use different TTS model (***`tts-1`*** or ***`tts-1-hd`***) - (def
 Clone the project
 
 ```bash
-  git clone https://github.com/w00kash/tts-openai-app.git
+git clone https://github.com/w00kash/tts-openai-app.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd tts-openai-app/
+cd tts-openai-app/
 ```
 
 Build Docker Image
 
 ```bash
-  docker build -t tts-openai-app .
+docker build -t tts-openai-app .
 ```
 
 Start as Docker container
 
 ```bash
-  docker run -it -d --name tts-openai-app \
-  -p 8080:8501 \
-  -e OPENAI_API_KEY="{your_openai_api_key}" tts-openai-app
+docker run -it -d --name tts-openai-app \
+-p 8080:8501 \
+-v ./media:/app/media/ \
+-e OPENAI_API_KEY="{your_openai_api_key}" tts-openai-app
 ```
-
 
 ## Tech Stack
 

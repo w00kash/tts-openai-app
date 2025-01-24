@@ -36,7 +36,7 @@ def local_css(file_name: str) -> bool:
 def convert(text: str, voice: str = "ash"):
 
     log_msg(f"Selected voice: {voice} : TTS Convert > {text}")
-    
+
     try:
 
         with client.audio.speech.with_streaming_response.create(
@@ -44,16 +44,16 @@ def convert(text: str, voice: str = "ash"):
             voice=voice,
             input=text
         ) as response:
-            response.stream_to_file(speech_file_path)       
+            response.stream_to_file(speech_file_path)
 
         return True
     except Exception as e:
         print("Exception occured :", e)
         return False
-    
+
 def streamlit_app():
 
-    st.set_page_config(page_title="Text-to-Speech Converter", layout="centered")
+    st.set_page_config(page_title="Text-to-Speech Converter", layout="wide")
     st.title("Text-to-Speech Converter")
     # load and apply local CSS for additional styling
     local_css("style.css")
@@ -74,7 +74,7 @@ def streamlit_app():
             result = convert(text, voice_option.lower())
 
             if result:
-                
+
                 alert_box.success("Audio file created successfully!  You can now play or download your audio file.")
 
                 encoded_file_path = str(speech_file_path).encode('utf-8')
@@ -82,7 +82,7 @@ def streamlit_app():
                 with open(encoded_file_path, "rb") as file:
                     audio_bytes = file.read()
                     right_top_col.audio(audio_bytes, format="audio/mpeg")
-                
+
                     # create a download button to download newly created audio file
                     left_top_col.download_button(
                             label="Download",
@@ -92,7 +92,7 @@ def streamlit_app():
 
         else:
             st.write("Please enter text")
-        
+
 def main():
     streamlit_app()
 
